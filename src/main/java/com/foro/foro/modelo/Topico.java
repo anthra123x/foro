@@ -29,10 +29,27 @@ public class Topico {
     private String autor;
     private String curso;
 
-    public Topico(String titulo, String mensaje, String curso) {
+    public Topico(String titulo, String mensaje, String curso, String autor) {
         this.titulo = titulo;
         this.mensaje = mensaje;
         this.curso = curso;
+        this.autor = autor;
     }
 
+    /**
+     * Actualiza los datos del tópico con la información enviada en el DTO.
+     * Sólo cambia los valores no nulos para permitir actualizaciones parciales.
+     */
+    public void actualizarDatos(com.foro.foro.dto.DatosActualizarTopico datos) {
+        if (datos.titulo() != null) this.titulo = datos.titulo();
+        if (datos.mensaje() != null) this.mensaje = datos.mensaje();
+        if (datos.curso() != null) this.curso = datos.curso();
+    }
+
+    /**
+     * Marca el tópico como inactivo en lugar de borrarlo físicamente.
+     */
+    public void desactivar() {
+        this.status = false;
+    }
 }
